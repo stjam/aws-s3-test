@@ -1,0 +1,52 @@
+version: "3"
+services:
+  localstack:
+    container_name: "localstack"
+    image: localstack/localstack:latest
+    environment:
+      - DEBUG=1
+      - USE_SSL=0
+      - AWS_CBOR_DISABLE=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOSTNAME=localstack
+      - SERVICES=s3
+      - AWS_DEFAULT_REGION=us-east-1
+    ports:
+      - "127.0.0.1:4566-4583:4566-4583"
+    expose:
+      - 4566
+    volumes:
+      - ${TEMPDIR:-/tmp/localstack}:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./init-s3.sh:/docker-entrypoint-initaws.d/init-s3-bucket.sh
+#  image-catalog:
+#    restart: on-failure
+#    build:
+#      ./ImageCatalogService/
+#    container_name: "image-catalog"
+#    environment:
+#      - REGION=us-east-1
+#      - S3_HOST=http://localstack:4566
+#      - BUCKET_NAME=bijenkorf-s3-bucket
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/db
+#    ports:
+#      - "9191:9191"
+#    depends_on:
+#      - localstack
+#      - postgres
+  postgres:
+    image: postgres
+    container_name: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=1
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=db
+    restart: unless-stopped
+volumes:
+  postgres-data:

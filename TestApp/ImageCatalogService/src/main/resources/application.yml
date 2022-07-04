@@ -1,0 +1,17 @@
+server:
+  port: 9191
+config:
+  aws:
+    region: us-east-1
+    url: ${S3_HOST:http://127.0.0.1:4566}
+    bucket-name: ${BUCKET_NAME:bijenkorf-s3-bucket}
+    access-key: ${ACCESS_KEY:localstack}
+    secret-key: ${SECRET_KET:localstack}
+spring:
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://127.0.0.1:5432/db}
+    username: postgres
+    password: 1
+    driver-class-name: org.postgresql.Driver
