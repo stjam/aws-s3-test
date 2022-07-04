@@ -1,6 +1,6 @@
-package com.test.profile.service.ProfileService.controller;
+package com.test.image.catalog.controller;
 
-import com.test.profile.service.ProfileService.model.ImageNotFoundException;
+import com.test.image.catalog.model.ImageNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

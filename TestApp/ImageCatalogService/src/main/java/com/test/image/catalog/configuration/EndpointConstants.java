@@ -1,4 +1,4 @@
-package com.test.profile.service.ProfileService.configuration;
+package com.test.image.catalog.configuration;
 
 public class EndpointConstants {
 

@@ -1,13 +1,15 @@
-package com.test.profile.service.ProfileService.service;
+package com.test.image.catalog.service;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
-import com.test.profile.service.ProfileService.configuration.ServiceConfiguration;
-import com.test.profile.service.ProfileService.model.ImageNotFoundException;
+import com.amazonaws.services.s3.model.AmazonS3Exception;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
+import com.test.image.catalog.configuration.ServiceConfiguration;
+import com.test.image.catalog.model.ImageNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +17,14 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static org.springframework.util.ResourceUtils.getFile;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class ImagServiceImpl implements ImageService {
 
-    @Autowired
-    private AmazonS3 amazonS3Client;
+    private final AmazonS3 amazonS3Client;
 
-    @Autowired
-    private ServiceConfiguration awsClientConfig;
+    private final ServiceConfiguration awsClientConfig;
 
     @Override
     public S3ObjectInputStream getImage(String predefinedTypeName, String dummySeoName, String reference) {

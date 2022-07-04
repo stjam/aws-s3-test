@@ -1,4 +1,4 @@
-package com.test.profile.service.ProfileService.service;
+package com.test.image.catalog.service;
 
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 

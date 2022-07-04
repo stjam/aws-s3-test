@@ -1,4 +1,4 @@
-package com.test.profile.service.ProfileService.model;
+package com.test.image.catalog.model;
 
 public enum UploadStatus {
     SUCCESS,

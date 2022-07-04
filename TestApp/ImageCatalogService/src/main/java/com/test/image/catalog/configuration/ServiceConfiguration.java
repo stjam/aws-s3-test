@@ -1,4 +1,4 @@
-package com.test.profile.service.ProfileService.configuration;
+package com.test.image.catalog.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
